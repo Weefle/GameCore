@@ -136,7 +136,7 @@ public class Main extends JavaPlugin implements Listener{
 			}
 		}
 		else if (l.equalsIgnoreCase("fstop")){
-			if (!(sender.hasPermission("gamecore.fstart"))){
+			if (!(sender.hasPermission("gamecore.fstop"))){
 				sender.sendMessage(ChatColor.RED + "You don't have permission to do this.");
 				return true;
 			}
