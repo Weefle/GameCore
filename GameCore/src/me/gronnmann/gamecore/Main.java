@@ -114,6 +114,11 @@ public class Main extends JavaPlugin implements Listener{
 				oPl.sendMessage(ChatColor.GREEN + "The winners are: " + winnersS);
 			}
 		}
+		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
+			public void run(){
+				Bukkit.getServer().shutdown();
+			}
+		}, 100);
 		
 			
 	}
