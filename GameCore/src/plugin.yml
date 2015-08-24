@@ -1,0 +1,9 @@
+name: GameCore
+author: gronnmann
+version: 1.0
+main: me.gronnmann.gamecore.Main
+commands:
+    fstart:
+        description: Forces the game to start
+    fstop:
+        description: Forces the game to start
