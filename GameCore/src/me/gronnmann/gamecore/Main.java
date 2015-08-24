@@ -125,6 +125,10 @@ public class Main extends JavaPlugin implements Listener{
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String l, String args[]){
 		if (l.equalsIgnoreCase("fstart")){
+			if (!(sender.hasPermission("gamecore.fstart"))){
+				sender.sendMessage(ChatColor.RED + "You don't have permission to do this.");
+				return true;
+			}
 			startGame();
 			sender.sendMessage(ChatColor.GREEN + "Forced the game to start");
 			for (Player oPl : Bukkit.getOnlinePlayers()){
@@ -132,6 +136,10 @@ public class Main extends JavaPlugin implements Listener{
 			}
 		}
 		else if (l.equalsIgnoreCase("fstop")){
+			if (!(sender.hasPermission("gamecore.fstart"))){
+				sender.sendMessage(ChatColor.RED + "You don't have permission to do this.");
+				return true;
+			}
 			Bukkit.getPluginManager().callEvent(new GameEndEvent(StopReason.FORCE));
 			sender.sendMessage(ChatColor.GREEN + "Forced the game to stop");
 			for (Player oPl : Bukkit.getOnlinePlayers()){
