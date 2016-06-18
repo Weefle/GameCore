@@ -1,2 +1,3 @@
 announce_winners: true
 waiting_time: 300
+min_players: 2

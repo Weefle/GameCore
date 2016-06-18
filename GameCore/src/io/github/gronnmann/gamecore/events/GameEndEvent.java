@@ -8,6 +8,7 @@ import org.bukkit.event.HandlerList;
 
 import io.github.gronnmann.gamecore.GameCore.StopReason;
 
+
 public class GameEndEvent extends Event{
 	private static HandlerList handler = new HandlerList();
 	
@@ -18,7 +19,7 @@ public class GameEndEvent extends Event{
 	public HandlerList getHandlers(){
 		return handler;
 	}
-	private StopReason rsn;
+	private io.github.gronnmann.gamecore.GameCore.StopReason rsn;
 	private List<Player> winners, losers;
 	private boolean announceEvent;
 	
