@@ -1,7 +1,7 @@
 name: GameCore
 author: gronnmann
 version: 1.0
-main: me.gronnmann.gamecore.Main
+main: io.github.gronnmann.gamecore.GameCore
 commands:
     fstart:
         description: Forces the game to start
