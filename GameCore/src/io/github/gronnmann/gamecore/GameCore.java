@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -15,6 +16,7 @@ public class GameCore {
 	public enum StopReason {GAME_END_TIME, GAME_END, FORCE};
 	FileConfiguration config;
 	int secondsremaining;
+	private Location lobby, specspawn;
 	
 	private GameCore(){};
 	private static GameCore gc = new GameCore();

@@ -43,8 +43,14 @@ public class Main extends JavaPlugin implements Listener{
 			e.getPlayer().setGameMode(GameMode.SPECTATOR);
 			return;
 		}
-		e.getPlayer().setAllowFlight(true);
-		e.getPlayer().setFlying(true);
+		if (config.getBoolean("lobby_flight") == true){
+			e.getPlayer().setAllowFlight(true);
+			e.getPlayer().setFlying(true);
+		}
+		if (config.getBoolean("lobby_enabled") == true){
+			
+		}
+		
 		
 	}
 	

@@ -1,3 +1,5 @@
 announce_winners: true
 waiting_time: 300
 min_players: 2
+lobby_enabled: true
+lobby_flight: true
