@@ -2,13 +2,8 @@ package io.github.gronnmann.gamecore;
 
 import java.util.List;
 
-import net.md_5.bungee.api.ChatColor;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
 import org.bukkit.GameMode;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.gronnmann.gamecore.GameCore.StopReason;
 import io.github.gronnmann.gamecore.events.GameEndEvent;
-import io.github.gronnmann.gamecore.events.GameStartEvent;
+import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin implements Listener{
 	FileConfiguration config;
@@ -39,7 +34,7 @@ public class Main extends JavaPlugin implements Listener{
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
-		if (GameCore.getGameCore().gameStarted == true){
+		if (GameCore.gameStarted == true){
 			e.getPlayer().setGameMode(GameMode.SPECTATOR);
 			return;
 		}
