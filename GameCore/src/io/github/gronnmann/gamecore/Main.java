@@ -26,6 +26,7 @@ public class Main extends JavaPlugin implements Listener{
 		
 		this.getCommand("fstart").setExecutor(Commands.getInstance());
 		this.getCommand("fstop").setExecutor(Commands.getInstance());
+		this.getCommand("setloc").setExecutor(Commands.getInstance());
 		
 		GameCore.getGameCore().setup(this, config);
 	}
@@ -36,6 +37,7 @@ public class Main extends JavaPlugin implements Listener{
 	public void onJoin(PlayerJoinEvent e){
 		if (GameCore.gameStarted == true){
 			e.getPlayer().setGameMode(GameMode.SPECTATOR);
+			e.getPlayer().teleport(GameCore.getGameCore().getSpectatorSpawn());
 			return;
 		}
 		if (config.getBoolean("lobby_flight") == true){
@@ -43,7 +45,7 @@ public class Main extends JavaPlugin implements Listener{
 			e.getPlayer().setFlying(true);
 		}
 		if (config.getBoolean("lobby_enabled") == true){
-			
+			e.getPlayer().teleport(GameCore.getGameCore().getLobbyLocation());
 		}
 		
 		
@@ -51,7 +53,13 @@ public class Main extends JavaPlugin implements Listener{
 	
 	@EventHandler
 	public void onGameStop(GameEndEvent e){
-		if (e.getWinners() == null)return;
+		if (e.getWinners() == null){
+			Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
+				public void run(){
+					Bukkit.getServer().shutdown();
+				}
+			}, 100);
+		}
 		StopReason reason = e.getReason();
 		List<Player> winners = e.getWinners();
 		

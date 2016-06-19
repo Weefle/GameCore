@@ -39,6 +39,42 @@ public class Commands implements CommandExecutor{
 				oPl.sendMessage(ChatColor.RED + "The game has been forced to stop by an operator");
 			}
 		}
+		
+		else if (l.equalsIgnoreCase("setloc")){
+			if (!(sender instanceof Player)){
+				sender.sendMessage("Only players can use this command.");
+				return true;
+			}
+			Player p = (Player)sender;
+			if (!(sender.hasPermission("gamecore.setloc"))){
+				p.sendMessage(ChatColor.RED + "You don't have permission to do this.");
+				return true;
+			}
+			if (args.length != 1){
+				p.sendMessage(ChatColor.RED + "Usage: /setloc [spectators/lobby]");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("spectators")){
+				GameCore.getGameCore().locs.set("spec.w", p.getWorld().getName());
+				GameCore.getGameCore().locs.set("spec.x", p.getLocation().getX());
+				GameCore.getGameCore().locs.set("spec.y", p.getLocation().getY());
+				GameCore.getGameCore().locs.set("spec.z", p.getLocation().getZ());
+				p.sendMessage(ChatColor.GREEN + "The location of " + ChatColor.YELLOW + "SPECTATOR SPAWN " + ChatColor.GREEN + "has been set.");
+				GameCore.getGameCore().saveLocs();
+				return true;
+			}else if (args[0].equalsIgnoreCase("lobby")){
+				GameCore.getGameCore().locs.set("lobby.w", p.getWorld().getName());
+				GameCore.getGameCore().locs.set("lobby.x", p.getLocation().getX());
+				GameCore.getGameCore().locs.set("lobby.y", p.getLocation().getY());
+				GameCore.getGameCore().locs.set("lobby.z", p.getLocation().getZ());
+				p.sendMessage(ChatColor.GREEN + "The location of " + ChatColor.YELLOW + "LOBBY " + ChatColor.GREEN + "has been set.");
+				GameCore.getGameCore().saveLocs();
+				return true;
+			}else{
+				p.sendMessage(ChatColor.RED + "Usage: /setloc [spectators/lobby]");
+				return true;
+			}
+		}
 		return true;
 	}
 }
