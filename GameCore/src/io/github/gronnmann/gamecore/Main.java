@@ -72,7 +72,14 @@ public class Main extends JavaPlugin implements Listener{
 		String winnersS = builder.toString().trim();
 		
 		for (Player oPl : Bukkit.getOnlinePlayers()){
-			if (e.isAnnounced() == false)return;
+			if (e.isAnnounced() == false){
+				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
+					public void run(){
+						Bukkit.getServer().shutdown();
+					}
+				}, 100);
+				return;
+			}
 			switch(reason){
 			case GAME_END:
 				oPl.sendMessage(ChatColor.GREEN + "The game has ended.");
@@ -82,7 +89,7 @@ public class Main extends JavaPlugin implements Listener{
 				break;
 			}
 			if (config.getBoolean("announce_winners") == true){
-				oPl.sendMessage(ChatColor.GREEN + "The winners are: " + winnersS);
+				oPl.sendMessage(ChatColor.GREEN + "The winners are: " + ChatColor.GOLD + winnersS);
 			}
 		}
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
